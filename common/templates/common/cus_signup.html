@@ -1,0 +1,167 @@
+{% extends 'common/master common.html' %}
+{% load static %}
+{% block title %}
+<title>Customer Registration</title>
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous"></script>
+{% endblock %}
+
+
+{% block header %}
+
+<style>
+    .container {
+        padding: 20px;
+    }
+
+    .login-head {
+        text-align: center;
+        text-decoration-line: underline;
+        font-weight: bold;
+        font-size: 40px;
+        color: blue;
+    }
+
+    button {
+        background-color: #04AA6D;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+
+    input[type=text],
+    input[type=password],
+    input[type=number],
+    input[type=email] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1efef;
+    }
+
+    input[type=text]:focus,
+    input[type=password]:focus {
+        background-color: rgb(221, 221, 221);
+        outline: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <h3 class="login-head"> SIGNUP</h3>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{message}}
+
+        <br>
+
+        <label for="">Customer Name:</label>
+        <input type="text" id="name" name="customer name" placeholder="Enter Name">
+
+
+        <!-- <label for="">Last Name(optional)</label>
+        <input type="text" id="Lname" name="lastname" placeholder="Last Name"> -->
+
+
+
+        <label for="">Gender:</label>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+        <br><br>
+
+
+        <!-- <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dateofbirth">
+        <br><br> -->
+
+
+        <label for="adrs">Address</label>
+        <textarea name="address" id="adrs" cols="30" rows="3"></textarea>
+        <br><br>
+
+        <!-- 
+        <label for="cntry">Country</label>
+        <select name="country" id="cntry">
+            <option disabled selected value="select your country"></option>
+            <option value="">India</option>
+        </select>
+        <br><br> -->
+
+
+        <label for="mobile">Mobile Number</label>
+        <input type="number" id="mob" name="mobile no" placeholder="Enter your mobile no">
+        <br><br>
+
+
+        <label for="mail">Email Id</label>
+        <input type="email" id="mail" name="email" placeholder="Enter your email">
+        <span id="email_err"></span>
+        <br><br>
+
+        <label for="pswrd">Password</label>
+        <input type="password" id="pswrd" name="password" placeholder="Enter password">
+        <br><br>
+
+
+        <!-- 
+        <label for="cnfrm">Confirm password</label>
+        <input type="password" id="cnfpass" placeholder="re-enter password">
+        <br> -->
+        <button  id="btn_submit" type="submit">Sign up</button>
+
+
+    </form>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                "X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()
+            }
+        })
+
+
+        $('#mail').change(function () {
+            var email = $('#mail').val()
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'common:email_exist'%}",
+                data: {
+                    'email_data': email
+                },
+                success: function (response) {
+                    let res = response.email_exist
+                    if(res == true){
+                        $('#email_err').html('email already exist')
+                        $('#email_err').css('color','red')
+                        $('#btn_submit').attr('disabled',true)
+
+                    }
+                    else{
+                        $('#email_err').html('')
+                        $('#btn_submit').attr('disabled',false)
+                    }
+                
+                    
+                }
+            })
+        })
+    })
+
+</script>
+
+
+
+{% endblock %}

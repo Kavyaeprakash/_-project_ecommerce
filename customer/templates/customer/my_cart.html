@@ -1,0 +1,81 @@
+{% extends 'customer/master_customer.html' %}
+{% load static %}
+{% block title %}
+        <title>CART</title>
+{% endblock %}
+
+{% block content %}
+<h2 style="text-align:center">View Product</h2>
+
+
+<table style="padding: 10px 10px;">
+    <thead>
+        <th>
+            product image
+        </th>
+        <th>
+            product name
+        </th>
+        <th>
+            category
+        </th>
+        <th>
+            price
+        </th>
+        <th>
+            quantity
+        </th>
+        <th>
+            Total price
+        </th>
+    </thead>
+    
+    {% for item in cart_items %}
+    <tbody>
+        <tr>
+            <td><img src="{{items.product.product_image.url}}" alt=""></td>
+            <td>{{item.product.product_name}}</td>
+            <td>{{item.product.product_category}}</td>
+            <td>{{item.product.product_price}}</td>
+            <td><input type="number" id="qunty" onchange="quantity('{{item.product.product_stock}}')"></td>
+            <td>
+                <input type="number" id="qty" onchange="getTotal('{{item.product.product_price}}')" max="{{item.product.product_stock}}">
+            </td>
+            <td>
+                {{item.product.product_price}}
+            </td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+<!-- <div class="card">
+  <img src="{{product_image.url}}" alt="" style="width:25%">
+  <h1>{{product.product_name}}</h1>
+  <p class="price">{{product.product_price}}</p>
+  <p>{{product.product_description}}</p>
+  <p>{{product.seller.s_name}}</p>
+  <p><button><a href="">buy now</a> </button></p>
+</div> -->
+<script>
+    function getTotal(price)
+    {
+        let qty=document.getElementById('qty').value
+        let  total=parseFloat(price) * parseFloat(qty)
+        console.log(total)
+    }
+
+    function quantity(qt)
+    {
+        let q=document.getElementById('qunty').value
+        if(q>qt)
+        {
+            console.log('out of stock')
+        }
+        else
+        {
+            console.log('in stock')
+        }
+
+    }
+</script>
+{% endblock %}

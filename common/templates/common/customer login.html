@@ -1,0 +1,56 @@
+{% extends 'common/master common.html' %}
+{% load static %}
+{% block title %}
+<title>Customer Login</title>
+{% endblock %}
+{% block header %}
+<style>
+    .container {
+        padding: 25px;
+        background-color: lightblue;
+    }
+
+    input[type=text],
+    input[type=password] {
+        width: 100%;
+        margin: 8px 0;
+        padding: 12px 20px;
+        display: inline-block;
+        border: 2px solid;
+        box-sizing: border-box;
+    }
+
+    button {
+        /* width: 50%;  */
+        padding: 15px;
+        margin: 10px 0px;
+        align-content: center;
+
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<center>
+    <h1>CUSTOMER LOGIN</h1>
+</center>
+<form method="POST">
+    {% csrf_token %}
+    {{message}}
+    <div class="container">
+        <label for="UserName">UserName:</label>
+        <input type="email" placeholder="Enter username " name="username">
+        <label for="Password">Password:</label>
+        <input type="password" placeholder="enter password" name="password">
+        <button type="submit">LOGIN</button>
+        New register ? <a href="{% url 'common:customer_signup' %}">Signup Now</a>
+
+
+    </div>
+
+</form>
+
+
+
+{% endblock %}

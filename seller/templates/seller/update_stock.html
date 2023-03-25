@@ -1,0 +1,62 @@
+{% extends 'seller/master_seller.html' %}
+{% load static %}
+
+{% block title %}
+<title>Seller Profile</title>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="display: grid;  justify-content: center;">
+    <h1 style="color: rgb(91, 48, 84);">
+        <b><u>UPDATE STOCK</u></b>
+    </h1><br>
+    <!-- <img src="{{ seller_profile.seller_pic.url }}" alt="" width="200px"> -->
+    <div style="display: flex;">
+        <label for="inputEmail4" class="form-label">PRODUCT NO</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <!-- <input type="number" class="form-control"  style="width: 400px;"
+            value=""> -->
+            <select name="" id="product" style="width:250px;">
+                {% for prdt in products %}
+                <option value="{{prdt.id}}">{{prdt.product_name}}</option>
+                {% endfor %}
+            </select>
+    </div><br>
+    <div style="display: flex;">
+        <label for="inputPassword4" class="form-label">CURRENT STOCK</label>&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="number" name="currentstock" class="form-control" style="width: 400px;" value=" ">
+    </div><br>
+    <div style="display: flex;">
+        <label for="inputEmail4" class="form-label">NEW STOCK</label>&nbsp;&nbsp;&nbsp;
+        <input type="number" class="form-control" id="inputEmail4" style="width: 400px;" value=" ">
+    </div><br>
+    <button type="submit" class="btn btn-success">UPDATE</button>
+
+
+</div>
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                "X-CSRFToken": $('[name=csrfmiddlewaretoken]').val()
+            }
+        })
+        $('#product').change(function (){
+            
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'seller:update_stock'%}",
+                data: {
+                    'product_id': $(this).val()
+                },
+
+                success: function(response){
+                    console.log(response.stock)
+                }
+            })
+        })
+
+
+         
+    })
+</script>
+{% endblock %}

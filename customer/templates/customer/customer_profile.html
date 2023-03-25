@@ -1,0 +1,30 @@
+{% extends 'customer/master_customer.html' %}
+{% load static %}
+
+{% block title %}
+<title>Seller Profile</title>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="display: grid;  justify-content: center;">
+    <h1 style="color: rgb(91, 48, 84);">
+        <b><u>CUSTOMER PROFILE</u></b>
+    </h1><br>
+    <!-- <img src="{{ seller_profile.seller_pic.url }}" alt="" width="200px"> -->
+    <div style="display: flex;">
+        <label for="inputEmail4" class="form-label">Name</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" class="form-control" id="inputEmail4" placeholder="Enter your Name" style="width: 400px;"
+            value="{{customer_profile.c_name }}" readonly>
+    </div><br>
+    <div style="display: flex;">
+        <label for="inputPassword4" class="form-label">Email Address</label>&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="email" class="form-control" id="inputPassword4" placeholder="Enter your Email"
+            style="width: 400px;" value="{{ customer_profile.c_email }}" readonly>
+    </div><br>
+    <div style="display: flex;">
+        <label for="inputEmail4" class="form-label">Phone Number</label>&nbsp;&nbsp;&nbsp;
+        <input type="text" class="form-control" id="inputEmail4" placeholder="Enter your Phone Number"
+            style="width: 400px;" value="{{ customer_profile.c_mobile }}" readonly>
+    </div>
+</div>
+{% endblock %}

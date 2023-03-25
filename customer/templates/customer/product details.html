@@ -1,0 +1,61 @@
+{% extends 'customer/master_customer.html' %}
+{% load static %}
+
+{% block title %}
+<title>product details</title>
+{% endblock %}
+
+{% block header %}
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+.price {
+  color: blue;
+  font-size: 22px;
+}
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+.card button:hover {
+  opacity: 0.7;
+}
+</style>
+{% endblock %}
+
+
+{% block content %}
+<br>
+
+<h2 style="text-align:center">View Product</h2>
+
+
+<div class="card">
+  <form method="POST">
+    {% csrf_token %}
+    <img src="{{product.product_image.url}}" alt="" style="width:25%">
+  <h1>{{product.product_name}}</h1>
+  <p class="price">{{product.product_price}}</p>
+  <p>{{product.product_description}}</p>
+  <p>{{product.seller.s_name}}</p>
+  <p><button type="submit">Add to Cart</button></p>
+
+  </form>
+  {{ msg }}
+  
+
+</div>
+
+{% endblock %}

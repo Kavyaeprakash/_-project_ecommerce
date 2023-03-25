@@ -1,0 +1,41 @@
+{% extends 'customer/master_customer.html' %}
+{% load static %}
+{% block title %}
+        <title>Home</title>
+{% endblock %}
+
+{% block content %}
+<h1>WELCOME {{customer_data.c_email}}</h1>
+
+    <div class="maindiv" style="display: inline-flex;">
+        <div class="image_div" style="margin-left: 200px;">
+            <img src="{% static 'images/shopping.jpg' %}" height="500px" width="400px" alt="" class="imagediv2">
+        </div>
+        <div class="sale_main_heading" style="margin-top: 140px;">
+            <div class="sale_heading">
+                <h3><b>WELCOM TO</b></h3>
+            </div>
+            <div >
+                <h1>ShoppingCart</h1>
+            </div>
+            
+            <button class="btn btn-warning" type="submit"> <b>Shop Now !!</b></button>
+        </div>
+    </div>
+<div>
+    
+{% for prdct in product_data %}
+<div class="card" style="width: 18rem;">
+    <img src="{{prdct.product_image.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{prdct.product_name}}</h5>
+      <p class="card-text">{{prdct.product_description}}</p>
+      <p class="card-text">{{prdct.seller.s_name}}</p>
+
+      <a href="{% url 'customer:product_details' prdct.id %}" class="btn btn-primary">view</a>
+    </div>
+  </div>
+{% endfor %}
+</div>
+    
+{% endblock %}  

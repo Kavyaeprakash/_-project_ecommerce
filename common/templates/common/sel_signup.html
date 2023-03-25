@@ -1,0 +1,114 @@
+{% extends 'common/master common.html' %}
+{% load static %}
+{% block title %}
+<title>Seller Registration</title>
+{% endblock %}
+
+{% block header %}
+<style>
+  .container {
+    padding: 16px;
+  }
+
+  input[type=text],
+  input[type=password],
+  input[type=number],
+  input[type=email] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+
+  input[type=text]:focus,
+  input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+
+  button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+
+  .login-head {
+    text-align: center;
+    text-decoration-line: underline;
+    font-weight: bold;
+    font-size: 35px;
+
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <!-- <h3 class="login-head"> SIGNUP</h3> -->
+  <form action="" method="POST"  enctype="multipart/form-data">
+    {% csrf_token %}
+    {{message}}
+
+    <label for="">Name: </label>
+    <input type="text" id="fname" name="sname" placeholder="Enter your Name">
+    
+
+    <label for="adrs">Address</label>
+    <textarea name="saddress" id="adrs" cols="30" rows="3"></textarea>
+    <br><br>
+
+
+    <label for="mobile">Mobile Number</label>
+    <input type="number" id="mob" name="smobile" placeholder="Enter your mobile no">
+    <br><br>
+
+
+    <label for="mail">Email Id</label>
+    <input type="email" id="mail" name="semail" placeholder="Enter your email">
+    <br><br>
+
+
+    <label for="pswrd">Password</label>
+    <input type="password" id="pswrd" placeholder="Enter password" name="spassword">
+    <br><br>
+
+    <label for="">Bank Name</label>
+    <input type="text" id="bname" name="bankname" placeholder="Bank Name">
+
+
+
+    <label for="">Account Number</label>
+    <input type="number" id="acnumber" name="accountnumber" placeholder="enter account number">
+
+    <label for="">Bank Branch </label>
+    <input type="text" id="branch" name="bankbranch" placeholder="branchname">
+    <br>
+
+    <label for="">ifsc code </label>
+    <input type="text" id="ifsccode" name="ifsccode" placeholder="">
+
+    <input type="file"  id="img" name="seller_pic">
+    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+
+    <button type="submit">Sign up</button>
+
+
+  </form>
+
+
+
+
+
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'common/master common.html' %}
+{% load static %}
+{% block title %}
+<title>Seller Login</title>
+{% endblock %}
+{% block header %}
+    <style>
+        .container {
+            width: 1250px;
+            height: 500px;
+            border: 1px solid black;
+            background-color: aquamarine;
+            display: grid;
+            justify-content: center;
+            padding-top: 10px;
+            /* padding: 50px 20px; */
+        }
+        input[type=text], input[type=password] {   
+        /* width: 100%;    */
+        /* margin: 8px 0;   */
+        padding: 0 50px;   
+        /* display:block; */
+        /* text-align: center; */
+        }
+
+        
+    </style>
+{% endblock %}
+{% block content %}
+    <!-- <center><h1><B>SELLER LOGIN</B></h1>
+    </center> -->
+    <form action=""  method="POST">
+        {% csrf_token %}
+        {{message}}
+        <div class="container">
+            <label for="UserName">UserName:</label>
+            <input type="text" placeholder="Enter username " name="username">
+            <br>
+            <label for="Password">Password:</label>
+            <input type="password" placeholder="enter password" name="password">
+            <br>
+            <button type="submit">LOGIN</button>
+            <br>
+            New register ? <a href="sel_signup.html">Signup Now</a>
+
+    
+        </div>
+
+    </form>
+    
+{% endblock %}

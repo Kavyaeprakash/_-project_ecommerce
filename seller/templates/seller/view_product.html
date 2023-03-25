@@ -1,0 +1,21 @@
+{% extends 'seller/master_seller.html' %}
+{% load static %}
+
+{% block title %}
+<title>VIEW Product</title>
+{% endblock %}
+
+{% block content %}
+<br>
+{% for prdct in products %}
+<div class="card" style="width: 18rem;">
+    <img src="{{prdct.product_image.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{prdct.product_name}}</h5>
+      <p class="card-text">{{prdct.product_description}}</p>
+      <a href="" class="btn btn-primary">view</a>
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
